@@ -1,8 +1,6 @@
 ﻿@model mvc_search.Models.Teacher
 
-@{
-    
-}
+@{ }
 
 <!DOCTYPE html>
 
@@ -46,5 +44,9 @@
         @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-outline-dark" }) |
         @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-outline-dark" })
     </p>
+
+    @*<p>@Model.Id </p>
+    <p>@Model.Name</p>
+    <p>@Model.Description</p>*@
 </body>
 </html>

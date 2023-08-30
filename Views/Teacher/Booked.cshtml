@@ -1,0 +1,23 @@
+﻿@model mvc_search.Models.Teacher
+
+@{
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Booked</title>
+</head>
+<body>
+    <div>
+        well...
+        <form method="post" action="~/Teacher/Booked/@Model.Id">
+            <input type="number" name="value" />
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

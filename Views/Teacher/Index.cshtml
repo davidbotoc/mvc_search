@@ -54,11 +54,12 @@
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-dark" }) |
                         @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-outline-dark" }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-dark" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-dark" }) |
+                        @Html.ActionLink("Booked", "Booked", new { id = item.Id }, new { @class = "btn btn-outline-dark" }) |
+                        @Html.ActionLink("BookedMinus", "BookedMinus", new { id = item.Id }, new { @class = "btn btn-outline-dark" })
                     </td>
                 </tr>
             }
-
         </table>
     </body>
 </html>

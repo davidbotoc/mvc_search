@@ -8,12 +8,72 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using mvc_search.Models;
+using System.Reflection;
 
 namespace mvc_search.Controllers
 {
     public class TeacherController : Controller
     {
         private mvcEntities db = new mvcEntities();
+
+        //Add a few years to the age field
+        /////
+        public ActionResult Booked(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Teacher teacher = db.Teachers.Find(id);
+            if (teacher == null)
+            {
+                return HttpNotFound();
+            }
+            return View(teacher);
+        }
+
+        [HttpPost, ActionName("Booked")]
+        public ActionResult BookedConfirmed(int id, string value)
+        {
+            //Teacher teacher = new Teacher(); 
+            var result = db.Teachers.Find(id);
+            var _value = Convert.ToInt32(value);
+            if (_value != 0)
+            {
+                result.Age += _value;
+                db.SaveChanges();
+            }
+            //return View(result);
+            return RedirectToAction("Index");
+        }
+        /////
+        
+        public ActionResult BookedMinus(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Teacher teacher = db.Teachers.Find(id);
+            if (teacher == null)
+            {
+                return HttpNotFound();
+            }
+            return View(teacher);
+        }
+
+        [HttpPost, ActionName("BookedMinus")]
+        public ActionResult BookedMinusConfirmed(int id, string value)
+        {
+            var result = db.Teachers.Find(id);
+            var _value = Convert.ToInt32(value);
+            if(_value > 0 && _value < result.Age)
+            {
+                result.Age -= _value;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
 
         // GET: Teacher
         public async Task<ActionResult> Index(string searchValue)
@@ -45,7 +105,7 @@ namespace mvc_search.Controllers
         {
             return View();
         }
-
+        
         // POST: Teacher/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
